@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+Construcción de una Interfaz de Usuario en React para Consumir una API: Personajes de Los Simpson
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+La construcción de aplicaciones que interactúan con una API externa es una de las tareas más comunes en el desarrollo web moderno. En este trabajo, se describe cómo implementar una interfaz dinámica para visualizar y filtrar datos de una API en React, utilizando como ejemplo una aplicación que muestra información sobre personajes de la serie Los Simpson. El enfoque se basa en el modularidad de los componentes y el manejo eficiente de estados, brindando una experiencia interactiva y fluida para los usuarios.
 
-## Available Scripts
+La aplicación está diseñada en React, uno de los frameworks más populares para el desarrollo de interfaces de usuario debido a su simplicidad y rendimiento. La estructura principal consta de dos componentes: App.js, que actúa como el punto de entrada y gestor de las interacciones principales, y SimpsonsCharacters.js, que maneja la lógica de comunicación con la API y la renderización de los datos obtenidos.
 
-In the project directory, you can run:
+El flujo de trabajo inicia con la configuración del proyecto, para lo cual se utiliza create-react-app, una herramienta que proporciona una base sólida para comenzar. Posteriormente, se integran los elementos básicos de la interfaz, como botones que permiten seleccionar diferentes categorías de personajes (todos, hombres, mujeres) y una barra de búsqueda para localizar personajes específicos por nombre. Estas interacciones son gestionadas mediante el uso de hooks como useState, que permite manejar el estado de las variables de la aplicación de forma eficiente.
 
-### `npm start`
+El componente App.js se encarga de capturar las acciones del usuario y actualizar los estados relevantes, como el tipo de búsqueda o el término introducido en la barra de búsqueda. A través de botones, el usuario puede seleccionar si desea ver todos los personajes o filtrarlos por género. Cada acción activa una actualización en el componente secundario SimpsonsCharacters.js, que utiliza estos estados para definir qué datos debe solicitar a la API.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+La lógica de comunicación con la API se implementa en el componente SimpsonsCharacters.js, donde se utiliza el hook useEffect para realizar solicitudes HTTP cada vez que cambian los estados dependientes. Dependiendo del filtro seleccionado, la URL de la 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+API se ajusta dinámicamente. Por ejemplo:
 
-### `npm test`
+•	Para obtener todos los personajes, se utiliza el endpoint http://localhost:3000/api/characters.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+•	Para filtrar por género, las URLs son http://localhost:3000/api/characters/sex/male o http://localhost:3000/api/characters/sex/female.
 
-### `npm run build`
+El uso de promesas y funciones asíncronas asegura que las solicitudes sean gestionadas correctamente, mientras que el estado de carga y los posibles errores son monitoreados para informar al usuario si ocurre algún problema. Los datos recuperados de la API son almacenados en el estado characters, que se actualiza automáticamente y es utilizado para renderizar los resultados.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+La interfaz se estructura en forma de tarjetas, donde cada personaje se muestra con su nombre, rol e imagen. Este diseño no solo mejora la legibilidad de la información, sino que también proporciona un aspecto visual atractivo. Si no se encuentran datos, el sistema muestra mensajes claros al usuario, como "No se encontraron personajes".
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Una de las principales ventajas de este enfoque es la reutilización de código. Los componentes son independientes y flexibles, lo que permite modificar o ampliar las funcionalidades de la aplicación sin afectar la estructura general. Además, el uso de hooks simplifica significativamente la gestión del estado y los efectos secundarios, manteniendo el código más limpio y fácil de mantener.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+En conclusión, la construcción de esta aplicación demuestra cómo React facilita la creación de interfaces dinámicas para consumir y visualizar datos de una API. Gracias a su arquitectura modular y el manejo eficiente de estados, esta herramienta permite desarrollar aplicaciones altamente interactivas con un código organizado y escalable.
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
